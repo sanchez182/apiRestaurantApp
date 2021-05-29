@@ -1,2 +1,5 @@
-# apiRestaurantApp
-Api en node.js para aplicación de restaurant y menú
+# Backend MERN - Calendar
+
+Backend que creamos en mi curso de React: de cero a experto
+
+fernando-herrera.com
