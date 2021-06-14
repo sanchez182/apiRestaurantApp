@@ -36,7 +36,7 @@ app.use( '/api/upload', require('./routes/uploads') );
 
 
 
-app.listen( process.env.PORT, () => {
+app.listen( process.env.PORT || 3000, () => {
     console.log('Servidor corriendo en puerto ' + process.env.PORT );
 });
 
