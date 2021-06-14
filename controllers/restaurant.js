@@ -1,6 +1,6 @@
 const { response } = require('express');
 
-const Restaurant = require('../models/restaurant');
+const Restaurant = require('../models/Restaurant');
 
 
 const getRestaurants = async(req, res = response) => {

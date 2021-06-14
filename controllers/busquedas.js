@@ -1,6 +1,6 @@
 const { response } = require('express');
 
-const Usuario = require('../models/usuario');
+const Usuario = require('../models/Usuario');
 const Medico = require('../models/medico');
 const Hospital = require('../models/hospital');
 
