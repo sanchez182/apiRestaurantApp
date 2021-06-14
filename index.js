@@ -26,7 +26,8 @@ app.use( '/api/usuarios', require('./routes/usuarios') );
 app.use( '/api/hospitales', require('./routes/hospitales') );
 app.use( '/api/auth', require('./routes/auth') );
 app.use( '/api/restaurants', require('./routes/restaurants') );
-/* app.use( '/api/plates', require('./routes/plates') );
+app.use( '/api/plates', require('./routes/plates') );
+/* 
 app.use( '/api/foodTime', require('./routes/foodTime') );
 app.use( '/api/foodType', require('./routes/foodType') );
 app.use( '/api/drinktypes', require('./routes/drinkTypes') );

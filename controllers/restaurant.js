@@ -1,36 +1,32 @@
 const { response } = require('express');
-/* 
-const Restaurant = require('../models/restaurant');
- */
-
 const Restaurant = require('../models/restaurant');
 
 const getRestaurants = async(req, res = response) => {
 
-   /*  const restaurants = await Restaurant.find()
+    const restaurants = await Restaurant.find()
                                     .populate('foodTimeList.model','foodTimeName');
- */
+
     res.json({
-        ok: true
-       // restaurants
+        ok: true,
+        restaurants
     })
 }
 
 const createRestaurant = async(req, res = response) => {
 
     const uid = req.uid;
-   /*  const restaurant = new Restaurant({ 
+    const restaurant = new Restaurant({ 
         ...req.body 
-    }); */
+    });
 
     try {
         
-   /*      const restaurantDB = await restaurant.save();
+        const restaurantDB = await restaurant.save();
         
- */
+
         res.json({
-            ok: true
-          //  ,restaurant: restaurantDB
+            ok: true,
+            restaurant: restaurantDB
         });
 
     } catch (error) {
@@ -52,7 +48,7 @@ const updateRestaurant = async (req, res = response) => {
 
     try {
         
-/*         const restaurant = await Restaurant.findById( id );
+        const restaurant = await Restaurant.findById( id );
 
         if ( !restaurant ) {
             return res.status(404).json({
@@ -71,7 +67,7 @@ const updateRestaurant = async (req, res = response) => {
         res.json({
             ok: true,
             restaurant: restaurantActualizado
-        }) */
+        })
 
     } catch (error) {
 

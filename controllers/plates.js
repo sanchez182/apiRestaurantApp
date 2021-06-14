@@ -1,5 +1,5 @@
 const { response } = require('express');
-const Plate = require('../models/Plate');
+const Plate = require('../models/plate');
 
 const getPlates = async(req, res = response) => {
 
