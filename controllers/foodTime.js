@@ -1,5 +1,5 @@
 const { response } = require('express');
-const FoodTime = require('../models/FoodTime');
+const FoodTime = require('../models/foodTime');
 
 const getFoodTime = async(req, res = response) => {
 
