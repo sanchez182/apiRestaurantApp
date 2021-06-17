@@ -12,8 +12,7 @@ const validarJWT = (req, res, next) => {
             ok: false,
             msg: 'No hay token en la petición'
         });
-    }
-console.log("no hay ")
+    } 
     try {
         
         const { uid } = jwt.verify( token, process.env.JWT_SECRET );

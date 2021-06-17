@@ -37,7 +37,12 @@ const RestaurantSchema = Schema({
           required: true},
           isActive: Boolean,
           showInApp: Boolean
-      }]
+      }],
+
+      tableList: [{
+            tableNumer: Number,
+            selected: Boolean
+        }]
 
 }, {  collection: 'restaurants' });
 

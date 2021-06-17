@@ -1,7 +1,7 @@
 const { response } = require('express');
 const bcrypt = require('bcryptjs');
 
-const Usuario = require('../models/Usuario');
+const Usuario = require('../models/usuario');
 const { generarJWT } = require('../helpers/jwt');
 const { googleVerify } = require('../helpers/google-verify');
 
@@ -104,8 +104,7 @@ const googleSignIn = async( req, res = response ) => {
 const renewToken = async(req, res = response) => {
 
   
-    const { uid, name } = req;
-console.log("llego")
+    const { uid, name } = req; 
     // Generar el TOKEN - JWT
     const token = await generarJWT( uid, name );
 
