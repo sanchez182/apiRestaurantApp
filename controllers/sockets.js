@@ -39,7 +39,10 @@ const selectRestaurantTable = async( payload ) => {
             { $set: { "tableList.$[elem].selected" : payload.isSelected } },
             { projection:{ "name": 1,  "tableList" :  {"$elemMatch": { "tableNumer": payload.tableNumer } }}, arrayFilters: [ { "elem.tableNumer": { $eq: payload.tableNumer } } ] }
          )
-        return res
+         //TODO: aca buscar luego los datos de table, xq aca me lo devuelve cuando aun no se ha actualizado
+
+        return {tableNumer: payload.tableNumer,
+            selected: payload.isSelected }
 
     } catch (error) {
         console.log(error);
