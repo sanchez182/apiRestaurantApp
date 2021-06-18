@@ -1,5 +1,5 @@
 /*
-    Hospitales
+    Restaurant
     ruta: '/api/resaturant'
 */
 const { Router } = require('express');
@@ -10,6 +10,7 @@ const { validarJWT } = require('../middlewares/validar-jwt');
 
 const {
     getRestaurants,
+    getRestaurant,
     createRestaurant,
     updateRestaurant
 } = require('../controllers/restaurant')
@@ -18,6 +19,7 @@ const {
 const router = Router();
 
 router.get( '/', getRestaurants );
+router.get( '/:idRestaurant', getRestaurant );
 
 router.post( '/',
     [

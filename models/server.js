@@ -39,7 +39,7 @@ class Server {
         
         this.app.use( '/api/auth', require('../routes/auth') ); 
         this.app.use( '/api/usuarios', require('../routes/usuarios') ); 
-        this.app.use( '/api/restaurants', require('../routes/restaurants') );
+        this.app.use( '/api/restaurants', require('../routes/restaurants') ); 
         this.app.use( '/api/plates', require('../routes/plates') );
         this.app.use( '/api/foodTime', require('../routes/foodTime') );
         this.app.use( '/api/foodType', require('../routes/foodType') );

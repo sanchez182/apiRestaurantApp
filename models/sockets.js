@@ -15,18 +15,22 @@ class Sockets {
     socketEvents() {
         // On connection
         this.io.on('connection', async( socket ) => {
-
-         const [ valido, uid ] = comprobarJWT( socket.handshake.query['x-token']  );
-
+            let theUid = null;
+        if(socket.handshake.query['isClient'] ){
+            theUid = socket.handshake.query['uidClient']
+             console.log("es cliente")
+        }else{
+            const [ valido, uid ] = comprobarJWT( socket.handshake.query['x-token']  );
+            theUid = uid
         if ( !valido ) {
                 console.log('socket no identificado');
                 return socket.disconnect();
             }
-
+        }
            // await usuarioConectado( uid );
 
             // Unir al usuario a una sala de socket.io
-          //  socket.join( uid );
+            socket.join( theUid );
 
             // TODO: Validar el JWT 
             // Si el token no es válido, desconectar
@@ -34,17 +38,13 @@ class Sockets {
             // TODO: Saber que usuario está activo mediante el UID
 
             // TODO: Emitir todos los usuarios   
-            this.io.emit( 'lista-usuarios', await getUsuarios() )
+           // this.io.emit( 'lista-usuarios', await getUsuarios() )
             // TODO: Socket join, uid
 
             // TODO: Escuchar cuando se aparta una mesa para un restaurante en especifico
-            socket.on( 'seleted-table', async( payload ) => {
-          /*       {
-                    numberTable: 1,
-                    idRestaurant: 1
-                } */
-                const mensaje = await selectRestaurantTable( payload );
-                this.io.to( payload.idRestaurant ).emit( 'seleted-table', mensaje );
+            socket.on( 'selected-table', async( payload ) => {
+                const response = await selectRestaurantTable( payload );
+                this.io.to( theUid ).emit( 'selected-table',response );
             });
             
 
@@ -52,8 +52,8 @@ class Sockets {
             // Marcar en la BD que el usuario se desconecto
             // TODO: Emitir todos los usuarios conectados
             socket.on('disconnect', async() => {
-                await usuarioDesconectado( uid );
-                this.io.emit( 'lista-usuarios', await getUsuarios() )
+                await usuarioDesconectado( theUid );
+              //  this.io.emit( 'lista-usuarios', await getUsuarios() )
             })
             
         

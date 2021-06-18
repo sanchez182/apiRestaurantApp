@@ -1,8 +1,24 @@
 const { response } = require('express');
 const Restaurant = require('../models/restaurant');
 
-const getRestaurants = async(req, res = response) => {
+const getRestaurant = async(req, res = response) => {
+    
+    
+    const { idRestaurant } = req.params;
+    
+    console.log( idRestaurant)
+    const restaurant = await Restaurant.findById(idRestaurant)
+                                    .populate('foodTimeList.model','foodTimeName');
 
+    res.json({
+        ok: true,
+        restaurant
+    })
+}
+
+const getRestaurants = async(req, res = response) => {
+    console.log(req)
+    console.log(req.idRestaurant)
     const restaurants = await Restaurant.find()
                                     .populate('foodTimeList.model','foodTimeName');
 
@@ -120,6 +136,7 @@ const borrarHospital = async(req, res = response) => {
 
 module.exports = {
     getRestaurants,
+    getRestaurant,
     createRestaurant,
     updateRestaurant
 }

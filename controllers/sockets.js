@@ -11,11 +11,12 @@ const usuarioConectado = async( uid ) => {
 }
 
 const usuarioDesconectado = async( uid ) => {
-    const usuario = await Usuario.findById(uid);
+  /*   const usuario = await Usuario.findById(uid);
     usuario.online = false;
-    await usuario.save();
+    await usuario.save(); */
     
-    return usuario;
+   // return usuario;
+    return uid;
 }
 
 
@@ -32,13 +33,13 @@ const selectRestaurantTable = async( payload ) => {
     
     try {
         //aca selecciono la mesa del restaurant
-        const selectedTable = new Restaurant.updateOne(
-            { _id: payload.idRestaurant, "tableList.tableNumer": payload.tableNumer },
-            { $set: { "tableList.$.selected" : true } }
-         ) ( payload );
-        await selectedTable.save();
 
-        return payload.tableNumer;
+        const res = await Restaurant.findOneAndUpdate(
+            { _id : payload.idRestaurant },
+            { $set: { "tableList.$[elem].selected" : payload.isSelected } },
+            { projection:{ "name": 1,  "tableList" :  {"$elemMatch": { "tableNumer": payload.tableNumer } }}, arrayFilters: [ { "elem.tableNumer": { $eq: payload.tableNumer } } ] }
+         )
+        return res
 
     } catch (error) {
         console.log(error);
